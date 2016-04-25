@@ -5,3 +5,5 @@ public class RussList
 
     RussList next;
 }
+
+
