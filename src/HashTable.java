@@ -1,9 +1,11 @@
 public class HashTable{
     RussList [] hashTable;
 
+
     public HashTable(int sizeOfHashTable){
         if (sizeOfHashTable < 2) throw new IllegalArgumentException();
         hashTable = new RussList[sizeOfHashTable];
+
 
     }
 
