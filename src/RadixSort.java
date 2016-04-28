@@ -3,6 +3,7 @@
  */
 public class RadixSort {
     public int [] values;
+    private int [] bucket;
 
     public RadixSort(){
 
@@ -15,14 +16,37 @@ public class RadixSort {
 //    shifted down so that the value is in the range 0-15 (inclusive).
 
     public static int getBucket(int value, int chunk){
-        return 0;
+        return (value >> 4 * chunk) & 0x0f;
     }
 
 //    This method will do one pass of Radix Sort - that is, it must do Counting Sort,
 //    using the selected chunk as the key to sort the rest of the values.
 
     public void doRadixSort_onePass(int chunk){
+        bucket = new int [16];
+        for (int i = 0; i < values.length;i++){
+            bucket[getBucket(values[i], chunk)]=+1;
+        }
+        //setup buckets for indexing
+        int carry = -100;
+        int temp;
+        for(int i = 0; i < bucket.length;i++){
+            if (i == 0){
+                carry = bucket[i];
+                bucket[i] = 0;
 
+            }
+            else {
+                temp = bucket[i];
+                bucket[i] = carry + bucket[i-1];
+                carry = temp;
+            }
+        }
+
+        int [] sorted = new int [values.length];
+        for(int i = 0; i < sorted.length;i++){
+
+        }
     }
 
 //    This method performs the entire Radix Sort. It must call doRadixSort onePass()

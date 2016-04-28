@@ -15,7 +15,7 @@ public class HashTable{
     }
 
     /**
-     * Inserts the key, value pair into a linked list collision strategy hash table at the end of LL.
+     * Inserts the key, value pair at the end of LL using a linked list collision strategy hash table.
      * @param key the key
      * @param value the matching value
      */
@@ -41,7 +41,7 @@ public class HashTable{
     /**
      * Search for the key parameter. Returns Object, if found, null otherwise.
      * @param key the key for which the value you seek.
-     * @return
+     * @return Object(may be null)
      */
     public Object search(String key){
         int indexToGetObject =Proj06Main.genHash(key) % hashTable.length;
