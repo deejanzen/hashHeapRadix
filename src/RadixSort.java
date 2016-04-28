@@ -23,9 +23,10 @@ public class RadixSort {
 //    using the selected chunk as the key to sort the rest of the values.
 
     public void doRadixSort_onePass(int chunk){
+        //count
         bucket = new int [16];
         for (int i = 0; i < values.length;i++){
-            bucket[getBucket(values[i], chunk)]=+1;
+            bucket[getBucket(values[i], chunk)] += 1;
         }
         //setup buckets for indexing
         int carry = -100;
@@ -43,16 +44,32 @@ public class RadixSort {
             }
         }
 
+        //sort
         int [] sorted = new int [values.length];
-        for(int i = 0; i < sorted.length;i++){
-
+        for(int i = 0; i < values.length;i++){
+            //System.out.println("\nvalues @ " + i + " = " + values[i]);
+            //printBucket();
+            sorted[bucket[getBucket(values[i], chunk)]] = values[i];
+            bucket[getBucket(values[i], chunk)] += 1;
+            //printBucket();
         }
+
+        values = sorted;
     }
 
 //    This method performs the entire Radix Sort. It must call doRadixSort onePass()
 //    to perform each of the passes through the data.
 
     public void doRadixSort(){
+        for (int i = 0; i < 8; i++){
+            doRadixSort_onePass(i);
+        }
+    }
 
+    private void printBucket(){
+        for (int i = 0; i < bucket.length;i++){
+            System.out.print(bucket[i] + " ");
+        }
+        System.out.println();
     }
 }
