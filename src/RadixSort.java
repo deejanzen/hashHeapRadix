@@ -1,10 +1,15 @@
 /**
- * Created by djanzen on 4/26/16.
+ * RadixSort uses bit shifting inorder to limit the number of buckets for counting sort of integer
+ * @author Dustin Janzen
  */
 public class RadixSort {
     public int [] values;
     private int [] bucket;
 
+    /**
+     * constructor does nothing per public instance variables
+     * @author Dustin Janzen
+     */
     public RadixSort(){
 
     }
@@ -15,6 +20,12 @@ public class RadixSort {
 //    it must return the 4 bits of that chunk,
 //    shifted down so that the value is in the range 0-15 (inclusive).
 
+    /**
+     * Does bit shifting and masking in order to limit the buckets to 16
+     * @param value the int to be sorted
+     * @param chunk the 4 bit chink or the 32 bit int
+     * @return
+     */
     public static int getBucket(int value, int chunk){
         return (value >> 4 * chunk) & 0x0f;
     }
@@ -22,6 +33,12 @@ public class RadixSort {
 //    This method will do one pass of Radix Sort - that is, it must do Counting Sort,
 //    using the selected chunk as the key to sort the rest of the values.
 
+    /**
+     * Does one counting sort of a given chunk.
+     * Counts the numbers in the buckets and the sets the buckets up for sorting.
+     * Sorts.
+     * @param chunk
+     */
     public void doRadixSort_onePass(int chunk){
         //count
         bucket = new int [16];
@@ -60,6 +77,9 @@ public class RadixSort {
 //    This method performs the entire Radix Sort. It must call doRadixSort onePass()
 //    to perform each of the passes through the data.
 
+    /**
+     * calls doRadixSort_onePass for each chunk
+     */
     public void doRadixSort(){
         for (int i = 0; i < 8; i++){
             doRadixSort_onePass(i);

@@ -1,14 +1,23 @@
 /**
- * Created by djanzen on 4/26/16.
+ * MaxHeap incl. maxHeapify, buildMaxHeap, removeMax, and heapSort
+ * @author Dustin Janzen
  */
 public class MaxHeap {
     public int [] data;
     public int count;
 
+    /**
+     * Does nothing. Public data.
+     */
     public MaxHeap(){
 
     }
 
+    /**
+     * maxHeapify takes an array index and implements the heap property, if necessary.
+     * Uses recursion to walk the array.
+     * @param index
+     */
     public void maxHeapify(int index){
         if (index > count) throw new IllegalArgumentException();
         //check  leaf
@@ -49,6 +58,9 @@ public class MaxHeap {
         }
     }
 
+    /**
+     * calls masHeapify from the farthest right internal node to build a max heap from an array
+     */
     public void buildMaxHeap(){
         //it must call maxHeapify() repeatedly.
         for (int i = count / 2 - 1; i > -1; i--){
@@ -56,6 +68,10 @@ public class MaxHeap {
         }
     }
 
+    /**
+     * removes the max from the head of the array, inserts the last value in the heap, and fixes up the heap from the root
+     * @return
+     */
     public int removeMax(){
         //Before it returns, it fixes up the heap, as shown in the slides.
         int result = data[0];
@@ -69,6 +85,10 @@ public class MaxHeap {
 //    If count is not equal to data.length when the method begins, throw
 //    IllegalArgumentException. When the method returns, count must be zero.
 
+    /**
+     * heapSort first call buildMaxHeap, then it calls removesMax, puts that value at the end of the sorted array invariant
+     * and then loops until the start of the heap
+     */
     public void heapSort(){
         if (count != data.length) throw new IllegalArgumentException();
         this.buildMaxHeap();
