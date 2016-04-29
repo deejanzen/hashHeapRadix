@@ -51,6 +51,9 @@ public class MaxHeap {
 
     public void buildMaxHeap(){
         //it must call maxHeapify() repeatedly.
+        for (int i = count / 2; i > -1; i--){
+            maxHeapify(i);
+        }
     }
 
     public int removeMax(){
@@ -74,24 +77,4 @@ public class MaxHeap {
 }
 
 
-//if (2*index +1 < data.length) left  =
-//        if (2*index +2 < data.length) right = data[2*index +2];
-//
-//        if (data[index] < left && data[index] < right){
-//            if (left - right >= 0 ){
-//                //maxHeapify(2*index +1);
-//                data[2 * index + 1] = data[index];
-//                data[index] = left;
-//                maxHeapify(2 * index + 1);
-//            }
-//            else{
-//                //maxHeapify(2*index +2);
-//                data[2 * index + 2] = data[index];
-//                data[index] = right;
-//                maxHeapify(2 * index + 2);
-//            }
-//        }
 
-
-//        if (count - index == 1 || count - index == 2) return; // < 3 ??
-//        if (2*index +1 == count) return;
