@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.*;
 
 /**
@@ -47,5 +49,64 @@ public class MaxHeapTest {
         for (int i = 0; i< mh.count;i++){
             System.out.print(mh.data[i]);
         }
+        mh.removeMax();
+        System.out.println();
+        for (int i = 0; i< mh.count;i++){
+            System.out.print(mh.data[i]);
+        }
     }
+    @Test
+    public void testremoveMax() {
+        int[] testArray = new int[6];
+        testArray[0] = 1;
+        testArray[1] = 2;
+//        testArray[2] = 3;
+//        testArray[3] = 4;
+//        testArray[4] = 5;
+
+        MaxHeap mh = new MaxHeap();
+        mh.data = testArray;
+        mh.count = 2;
+        mh.buildMaxHeap();
+        mh.removeMax();
+        for (int i = 0; i< mh.count;i++){
+            System.out.print(mh.data[i]);
+        }
+    }
+    @Test
+    public void testHeapSort(){
+        int[] testArray = new int[100];
+//        testArray[0] = 5;
+//        testArray[1] = 4;
+//        testArray[2] = 3;
+//        testArray[3] = 2;
+////        testArray[4] = 5;
+
+        Random rng = new Random();
+        for (int i = 0; i < 100; i++){
+            testArray[i] = rng.nextInt(100);
+        }
+        for (int i = 0; i< testArray.length;i++){
+            System.out.print(testArray[i] + " ");
+        }
+
+        MaxHeap mh = new MaxHeap();
+        mh.data = testArray;
+        mh.count = testArray.length;
+        mh.buildMaxHeap();
+        System.out.println();
+
+        for (int i = 0; i< mh.data.length;i++){
+            System.out.print(mh.data[i] + " ");
+        }
+
+        mh.heapSort();
+
+        System.out.println();
+
+        for (int i = 0; i< mh.data.length;i++){
+            System.out.print(mh.data[i] + " ");
+        }
+    }
+
 }

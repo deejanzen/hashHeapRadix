@@ -51,14 +51,18 @@ public class MaxHeap {
 
     public void buildMaxHeap(){
         //it must call maxHeapify() repeatedly.
-        for (int i = count / 2; i > -1; i--){
+        for (int i = count / 2 - 1; i > -1; i--){
             maxHeapify(i);
         }
     }
 
     public int removeMax(){
         //Before it returns, it fixes up the heap, as shown in the slides.
-        return 0;
+        int result = data[0];
+        data[0] = data[count - 1];
+        count -= 1;
+        this.maxHeapify(0);
+        return result;
     }
 
 //    This method performs Heap Sort. It must call buildMaxHeap() and removeMax().
@@ -66,6 +70,15 @@ public class MaxHeap {
 //    IllegalArgumentException. When the method returns, count must be zero.
 
     public void heapSort(){
+        if (count != data.length) throw new IllegalArgumentException();
+        this.buildMaxHeap();
+        int startOfSorted = data.length - 1;
+        while(count > 0){
+            int putToEnd = this.removeMax();
+            data[startOfSorted] = putToEnd;
+            startOfSorted -=1;
+        }
+
 
     }
 
